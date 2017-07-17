@@ -126,11 +126,47 @@ class App extends Component {
     })
   }
 
+
+  markAsRead = (messages)=>{
+    console.log("mark them");
+    var whichAreSelected = [];
+    for(let i=0; i<messages.length; i++){           // loops through to see if they are selected or not
+      if(messages[i].selected){
+        whichAreSelected.push(i)
+      }
+    }
+    for(let i=0; i<whichAreSelected.length; i++){
+      messages[whichAreSelected[i]].read = true;
+    }
+    console.log(whichAreSelected);
+  }
+
+
+  markAsUnread = (messages)=>{
+    console.log("mark them");
+    var whichAreSelected = [];
+    for(let i=0; i<messages.length; i++){           // loops through to see if they are selected or not
+      if(messages[i].selected){
+        whichAreSelected.push(i)
+      }
+    }
+    for(let i=0; i<whichAreSelected.length; i++){
+      messages[whichAreSelected[i]].read = false;
+    }
+    console.log(whichAreSelected);
+  }
+
+  addLabel = (messages)=>{
+    
+  }
+
+
+
   render() {
     return (
       <div className="App">
         <h2> Welcome to React</h2>
-        <ToolBar selectedAllFunction={this.toggleSelectedAll} messageList={this.state.messages}/>
+        <ToolBar selectedAllFunction={this.toggleSelectedAll} messageList={this.state.messages} markAsReadFunction={this.markAsRead} markAsUnreadFunction={this.markAsUnread}/>
         <Messages messageList={this.state.messages} readFunction={this.changeReadStatus} starFunction={this.toggleStar} selectedFunction={this.toggleSelected}/>
       </div>
     );

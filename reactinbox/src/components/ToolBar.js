@@ -28,11 +28,11 @@ class ToolBar extends React.Component {
               {/* fa-check-square-o */}
             </button>
 
-            <button className="btn btn-default">
+            <button className="btn btn-default" onClick={()=> this.props.markAsReadFunction(this.props.messageList)}>
               Mark As Read
             </button>
 
-            <button className="btn btn-default">
+            <button className="btn btn-default" onClick={()=> this.props.markAsUnreadFunction(this.props.messageList)}>
               Mark As Unread
             </button>
 
