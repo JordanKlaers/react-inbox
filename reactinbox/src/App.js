@@ -20,7 +20,6 @@ class App extends Component {
     "subject": "connecting the system won't do anything, we need to input the mobile AI panel!",
     "read": false,
     "starred": false,
-    "selected": true,
     "labels": [],
     "selected": false
   },
@@ -37,7 +36,6 @@ class App extends Component {
     "subject": "We need to program the primary TCP hard drive!",
     "read": true,
     "starred": false,
-    "selected": true,
     "labels": [],
     "selected": false
   },
@@ -115,7 +113,7 @@ class App extends Component {
         messages[i]["selected"] = false;
       }
     }
-    else if(numberSelected == 0){
+    else if(numberSelected === 0){
       console.log("none are selected");
       for(let i=0; i<messages.length; i++){
         messages[i]["selected"] = true;
@@ -156,9 +154,31 @@ class App extends Component {
     console.log(whichAreSelected);
   }
 
-  addLabel = (messages)=>{
-    
+  addLabel = (messages, event)=>{
+    var whichAreSelected = [];
+    console.log(event.target.value);
+    console.log(typeof(event.target.value));
+
+    for(let i=0; i<messages.length; i++){           // loops through to see if they are selected or not
+      if(messages[i].selected){
+        whichAreSelected.push(i)
+      }
+    }
+    console.log(whichAreSelected);
+    for(let i=0; i<whichAreSelected.length; i++){
+      for(let j=0; j<messages[whichAreSelected[i]].labels.length; j++){
+        messages[whichAreSelected[i]].labels.push("'" + event.target.value + "'")
+      }
+    }
+    // debugger;
+
+    console.log(messages);
+
+    // this.setState({
+    //   messages: messages
+    // })
   }
+
 
 
 
@@ -166,7 +186,7 @@ class App extends Component {
     return (
       <div className="App">
         <h2> Welcome to React</h2>
-        <ToolBar selectedAllFunction={this.toggleSelectedAll} messageList={this.state.messages} markAsReadFunction={this.markAsRead} markAsUnreadFunction={this.markAsUnread}/>
+        <ToolBar selectedAllFunction={this.toggleSelectedAll} messageList={this.state.messages} markAsReadFunction={this.markAsRead} markAsUnreadFunction={this.markAsUnread} addLabelFunction={this.addLabel}/>
         <Messages messageList={this.state.messages} readFunction={this.changeReadStatus} starFunction={this.toggleStar} selectedFunction={this.toggleSelected}/>
       </div>
     );

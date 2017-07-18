@@ -6,10 +6,6 @@ import OneMessage from './oneMessage';
 
 class Messages extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
-
 
   render() {
     return (

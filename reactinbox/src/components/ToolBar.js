@@ -36,7 +36,7 @@ class ToolBar extends React.Component {
               Mark As Unread
             </button>
 
-            <select className="form-control label-select">
+            <select className="form-control label-select" onChange={(event)=>this.props.addLabelFunction(this.props.messageList, event)}>
               <option>Apply label</option>
               <option value="dev">dev</option>
               <option value="personal">personal</option>
