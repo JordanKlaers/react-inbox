@@ -13,18 +13,19 @@ class ToolBar extends React.Component {
     console.log(this.state);
   }
 
+
   render() {
     return (
       <div className="App">
         <div className="row toolbar">
           <div className="col-md-12">
             <p className="pull-right">
-              <span className="badge badge">2</span>
+              <span className="badge badge">{this.props.count}</span>
               unread messages
             </p>
 
             <button className="btn btn-default" onClick={() => this.props.selectedAllFunction(this.props.messageList)}>
-              <i className={"fa fa-check-square-o"} ></i>
+              <i className={ this.props.bulkCheckboxFunction(this.props.messageList)} ></i>
               {/* fa-check-square-o */}
             </button>
 
@@ -43,14 +44,14 @@ class ToolBar extends React.Component {
               <option value="gschool">gschool</option>
             </select>
 
-            <select className="form-control label-select">
+            <select className="form-control label-select" onChange={(event)=>this.props.removeLabelFunction(this.props.messageList, event)}>
               <option>Remove label</option>
               <option value="dev">dev</option>
               <option value="personal">personal</option>
               <option value="gschool">gschool</option>
             </select>
 
-            <button className="btn btn-default">
+            <button className="btn btn-default" onClick={()=>this.props.deleteMessageFunction(this.props.messageList)}>
               <i className="fa fa-trash-o"></i>
             </button>
           </div>
